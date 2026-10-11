@@ -133,6 +133,17 @@ pytest tests/integration -s                 # prints the recall / false-positive
 
 ## License
 
-MIT. Bundles the QuickFIX data dictionaries and vendors the MIT-licensed `RAW_DATA` length→data
-tag table from [simplefix](https://github.com/da4089/simplefix) (© David Arnold) — see
-`src/safix/parsing/rawdata.py` for attribution.
+SAFIX is licensed under the **GNU AGPL-3.0-or-later** — see [`LICENSE`](LICENSE). In short: you
+may use, modify, and redistribute it, but if you modify it or run it as a network service, you
+must make your source available under the AGPL.
+
+A **separate commercial license** is available for organizations that cannot accept the AGPL's
+terms (e.g. embedding SAFIX in a closed-source product or offering it as a hosted service without
+releasing changes). Contact boringllm58@gmail.com.
+
+Third-party components are attributed in [`NOTICE`](NOTICE): the bundled QuickFIX data
+dictionaries (QuickFIX Software License) and the vendored `RAW_DATA` table from
+[simplefix](https://github.com/da4089/simplefix) (MIT, © David Arnold).
+
+Contributions are welcome under the dual-license model — see [`CONTRIBUTING.md`](CONTRIBUTING.md)
+and [`CLA.md`](CLA.md).

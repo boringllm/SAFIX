@@ -8,14 +8,15 @@ version = "0.1.0"
 description = "SAFIX — Static Analyzer for FIX: a security scanner for the FIX trading protocol"
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
-authors = [{ name = "SAFIX" }]
+license = { text = "AGPL-3.0-or-later" }
+authors = [{ name = "BoringLLM" }]
 keywords = ["fix", "fix-protocol", "security", "scanner", "quickfix", "trading", "sast"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
     "Intended Audience :: Financial and Insurance Industry",
     "Topic :: Security",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
     "Programming Language :: Python :: 3",
 ]
 dependencies = [

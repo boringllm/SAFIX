@@ -1,0 +1,57 @@
+SAFIX — Static Analyzer for FIX
+Copyright (C) 2026 BoringLLM
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version. The full license text is in the LICENSE file.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+--------------------------------------------------------------------------------
+COMMERCIAL / DUAL LICENSE
+--------------------------------------------------------------------------------
+SAFIX is available under the AGPL-3.0-or-later above. A separate commercial
+license is also available for organizations that do not wish to comply with the
+AGPL's terms — for example, embedding SAFIX in a closed-source product or
+offering it as a hosted service without releasing their modifications under the
+AGPL. Contact the copyright holder (boringllm58@gmail.com) for commercial terms.
+
+================================================================================
+THIRD-PARTY NOTICES
+================================================================================
+This product bundles or derives from the following third-party components. Their
+licenses are permissive and compatible with redistribution; the required notices
+are reproduced here.
+
+1. QuickFIX data dictionaries
+   Files: src/safix/data/dictionaries/FIX40.xml .. FIX50SP2.xml, FIXT11.xml
+   License: The QuickFIX Software License, Version 1.0
+   Copyright (c) 2001-2020 Oren Miller / quickfixengine.org
+
+   This product includes software developed by quickfixengine.org
+   (http://www.quickfixengine.org/).
+
+   See http://www.quickfixengine.org/LICENSE for licensing information.
+
+2. simplefix — RAW_DATA length/data tag table (vendored)
+   File: src/safix/parsing/rawdata.py (the RAW_DATA pair table only)
+   License: MIT License
+   Copyright (c) 2017-2023 David Arnold
+   https://github.com/da4089/simplefix
+
+3. Python runtime dependencies (installed via pip, not bundled in this repo),
+   each distributed under its own permissive license:
+     - FastAPI, Starlette .......... MIT License
+     - pydantic, pydantic-core ..... MIT License
+     - typer ....................... MIT License
+     - rich ........................ MIT License
+     - PyYAML ...................... MIT License
+     - uvicorn ..................... BSD-3-Clause License
+     - Jinja2 ...................... BSD-3-Clause License
+     - python-multipart ............ Apache-2.0 License
+
+The inclusion of the above components does not change the license of SAFIX's own
+source code, which is AGPL-3.0-or-later (or the commercial license above).

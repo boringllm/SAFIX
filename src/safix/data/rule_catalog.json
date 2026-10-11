@@ -1,0 +1,664 @@
+[
+ {
+  "id": "SAFIX-APP-001",
+  "title": "Non-positive OrderQty(38)",
+  "category": "APP",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-APP-01",
+   "SV-APP-1"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-002",
+  "title": "OrderQty(38) exceeds max order size",
+  "category": "APP",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-APP-01"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-004",
+  "title": "Order notional exceeds limit",
+  "category": "APP",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-APP-01"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-005",
+  "title": "Non-positive Price(44)",
+  "category": "APP",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-APP-02",
+   "SV-APP-2"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-010",
+  "title": "OrigClOrdID(41) BOLA \u2014 cancel/replace of a foreign order",
+  "category": "APP",
+  "severity": "critical",
+  "confidence": "high",
+  "vectors": [
+   "AV-APP-05",
+   "SV-APP-6"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-012",
+  "title": "Quantity escalation on replace",
+  "category": "APP",
+  "severity": "high",
+  "confidence": "medium",
+  "vectors": [
+   "AV-APP-10",
+   "SV-APP-12"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-018",
+  "title": "Future-dated TransactTime(60)",
+  "category": "APP",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-APP-16",
+   "SV-APP-18"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-019",
+  "title": "Stale TransactTime(60)",
+  "category": "APP",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-APP-16",
+   "SV-APP-18"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-022",
+  "title": "Mass-cancel-all (kill-switch scope)",
+  "category": "APP",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-APP-19"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-030",
+  "title": "Stop order without StopPx(99)",
+  "category": "APP",
+  "severity": "medium",
+  "confidence": "high",
+  "vectors": [
+   "SV-APP-3",
+   "AV-APP-03"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-031",
+  "title": "Limit order without Price(44)",
+  "category": "APP",
+  "severity": "medium",
+  "confidence": "high",
+  "vectors": [
+   "SV-APP-3"
+  ]
+ },
+ {
+  "id": "SAFIX-APP-032",
+  "title": "Market order carrying a Price(44)",
+  "category": "APP",
+  "severity": "low",
+  "confidence": "medium",
+  "vectors": [
+   "AV-APP-04"
+  ]
+ },
+ {
+  "id": "SAFIX-ENC-001",
+  "title": "External-entity XXE signature in a field value",
+  "category": "ENC",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-ENC-01",
+   "AV-ENC-02",
+   "SV-ENC-8"
+  ]
+ },
+ {
+  "id": "SAFIX-ENC-002",
+  "title": "Parameter-entity (blind XXE) signature",
+  "category": "ENC",
+  "severity": "high",
+  "confidence": "medium",
+  "vectors": [
+   "AV-ENC-04",
+   "SV-ENC-9"
+  ]
+ },
+ {
+  "id": "SAFIX-ENC-003",
+  "title": "Entity-expansion / billion-laughs signature",
+  "category": "ENC",
+  "severity": "high",
+  "confidence": "medium",
+  "vectors": [
+   "AV-ENC-03",
+   "AV-ENC-06"
+  ]
+ },
+ {
+  "id": "SAFIX-ENC-004",
+  "title": "XInclude signature (bypasses DOCTYPE defenses)",
+  "category": "ENC",
+  "severity": "high",
+  "confidence": "medium",
+  "vectors": [
+   "AV-ENC-05"
+  ]
+ },
+ {
+  "id": "SAFIX-ENC-005",
+  "title": "schemaLocation pointing off-host (schema poisoning/SSRF)",
+  "category": "ENC",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-ENC-09",
+   "SV-ENC-10"
+  ]
+ },
+ {
+  "id": "SAFIX-ENC-006",
+  "title": "CDATA smuggling (control bytes / embedded frame)",
+  "category": "ENC",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-ENC-10"
+  ]
+ },
+ {
+  "id": "SAFIX-ENC-008",
+  "title": "UTF-7/16 BOM or encoding declaration (filter-bypass primitive)",
+  "category": "ENC",
+  "severity": "low",
+  "confidence": "low",
+  "vectors": [
+   "AV-ENC-08"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-FRM-001",
+  "title": "BodyLength(9) does not match the computed body",
+  "category": "SESS",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-SESS-FRM-07",
+   "AV-SESS-FRM-01",
+   "SV-ENC-4"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-FRM-002",
+  "title": "BodyLength(9) is non-numeric",
+  "category": "SESS",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-SESS-FRM-01"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-FRM-003",
+  "title": "CheckSum(10) does not match the recomputed value",
+  "category": "SESS",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-SESS-FRM-06",
+   "SV-ENC-4"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-FRM-004",
+  "title": "CheckSum(10) is not exactly three digits",
+  "category": "SESS",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "SV-TYPE-37"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-FRM-005",
+  "title": "Message has no CheckSum(10) (truncated?)",
+  "category": "SESS",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-SESS-FRM-02"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-FRM-006",
+  "title": "Message does not begin with BeginString(8)",
+  "category": "SESS",
+  "severity": "high",
+  "confidence": "medium",
+  "vectors": [
+   "AV-SESS-FRM-05",
+   "AV-STRUCT-16"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-FRM-007",
+  "title": "Bytes present after CheckSum(10) within the record",
+  "category": "SESS",
+  "severity": "high",
+  "confidence": "medium",
+  "vectors": [
+   "AV-SESS-FRM-03"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-SEQ-003",
+  "title": "Too-low MsgSeqNum (sequence rewind / desync)",
+  "category": "SESS",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-SESS-SEQ-03"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-SEQ-005",
+  "title": "ResendRequest EndSeqNo(16)=0 (resend all \u2014 amplification)",
+  "category": "SESS",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-SESS-SEQ-05"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-SEQ-007",
+  "title": "ResendRequest inverted range (BeginSeqNo > EndSeqNo)",
+  "category": "SESS",
+  "severity": "medium",
+  "confidence": "high",
+  "vectors": [
+   "AV-SESS-SEQ-08"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-SEQ-009",
+  "title": "SequenceReset leapfrogs the sequence forward",
+  "category": "SESS",
+  "severity": "medium",
+  "confidence": "low",
+  "vectors": [
+   "AV-SESS-SEQ-09"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-SEQ-010",
+  "title": "SequenceReset-GapFill to a non-advancing NewSeqNo",
+  "category": "SESS",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-SESS-SEQ-10",
+   "AV-SESS-SEQ-11"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-SEQ-011",
+  "title": "PossDup resend missing OrigSendingTime(122)",
+  "category": "SESS",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-SESS-SEQ-12",
+   "SV-SESS-10"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-SEQ-012",
+  "title": "Duplicate MsgSeqNum without PossDup(43=Y) (replay/injection)",
+  "category": "SESS",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-SESS-SEQ-12",
+   "SV-SESS-3"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-SEQ-013",
+  "title": "GapFill targets a previously-queued high seqnum (smuggling chain)",
+  "category": "SESS",
+  "severity": "high",
+  "confidence": "medium",
+  "vectors": [
+   "AV-SESS-SEQ-13"
+  ]
+ },
+ {
+  "id": "SAFIX-SESS-STA-001",
+  "title": "Logon ResetSeqNumFlag(141)=Y (sequence reset)",
+  "category": "SESS",
+  "severity": "medium",
+  "confidence": "low",
+  "vectors": [
+   "AV-SESS-STA-01",
+   "SV-SESS-15"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-001",
+  "title": "Field has a non-numeric tag",
+  "category": "STRUCT",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-TYPE-31",
+   "AV-STRUCT-04"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-002",
+  "title": "Tag has a leading zero (alias risk, e.g. 007 == 7)",
+  "category": "STRUCT",
+  "severity": "low",
+  "confidence": "medium",
+  "vectors": [
+   "AV-TYPE-31",
+   "SV-TYPE-1"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-003",
+  "title": "Field has an empty value",
+  "category": "STRUCT",
+  "severity": "low",
+  "confidence": "medium",
+  "vectors": [
+   "SV-ENC-3"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-004",
+  "title": "A structural tag (8/9/35/10) appears more than once",
+  "category": "STRUCT",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-STRUCT-06",
+   "SV-STRUCT-24"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-005",
+  "title": "Token without a '=' separator",
+  "category": "STRUCT",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-STRUCT-04",
+   "AV-TYPE-7"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-006",
+  "title": "Field not terminated by a delimiter (truncated?)",
+  "category": "STRUCT",
+  "severity": "low",
+  "confidence": "low",
+  "vectors": [
+   "AV-SESS-FRM-02"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-101",
+  "title": "Missing required field",
+  "category": "STRUCT",
+  "severity": "medium",
+  "confidence": "high",
+  "vectors": [
+   "AV-STRUCT-01",
+   "SV-STRUCT-1"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-110",
+  "title": "Unknown/undefined tag",
+  "category": "STRUCT",
+  "severity": "low",
+  "confidence": "low",
+  "vectors": [
+   "AV-STRUCT-04",
+   "AV-STRUCT-05"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-111",
+  "title": "Foreign tag for this message type",
+  "category": "STRUCT",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-STRUCT-05"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-120",
+  "title": "Unknown or undefined MsgType(35)",
+  "category": "STRUCT",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-STRUCT-20"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-130",
+  "title": "Repeating-group count desync",
+  "category": "STRUCT",
+  "severity": "high",
+  "confidence": "medium",
+  "vectors": [
+   "AV-STRUCT-08",
+   "AV-STRUCT-09"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-131",
+  "title": "Negative group count",
+  "category": "STRUCT",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-STRUCT-11",
+   "AV-TYPE-13"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-132",
+  "title": "Non-numeric group count",
+  "category": "STRUCT",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-STRUCT-12",
+   "AV-TYPE-13"
+  ]
+ },
+ {
+  "id": "SAFIX-STRUCT-140",
+  "title": "Duplicate scalar tag (parameter pollution)",
+  "category": "STRUCT",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-STRUCT-06",
+   "AV-STRUCT-07",
+   "SV-STRUCT-24"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-001",
+  "title": "DATA field declared length overruns the message (over-read)",
+  "category": "TYPE",
+  "severity": "critical",
+  "confidence": "high",
+  "vectors": [
+   "AV-TYPE-1",
+   "AV-TYPE-3",
+   "SV-TYPE-31"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-002",
+  "title": "DATA field declared length disagrees with the field boundary",
+  "category": "TYPE",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-TYPE-4",
+   "AV-TYPE-1",
+   "SV-TYPE-32"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-003",
+  "title": "DATA field has no preceding length field (orphan)",
+  "category": "TYPE",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-TYPE-8"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-004",
+  "title": "DATA length field is non-numeric",
+  "category": "TYPE",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-TYPE-9",
+   "SV-TYPE-33"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-005",
+  "title": "DATA length field is negative",
+  "category": "TYPE",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-TYPE-2",
+   "SV-TYPE-33"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-010",
+  "title": "Datatype grammar violation",
+  "category": "TYPE",
+  "severity": "medium",
+  "confidence": "high",
+  "vectors": [
+   "AV-TYPE-13",
+   "SV-TYPE-4",
+   "SV-TYPE-5"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-011",
+  "title": "Calendar-impossible date",
+  "category": "TYPE",
+  "severity": "medium",
+  "confidence": "high",
+  "vectors": [
+   "SV-TYPE-13"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-012",
+  "title": "Integer magnitude / width overflow",
+  "category": "TYPE",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "SV-TYPE-5"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-013",
+  "title": "Decimal precision-loss (advisory)",
+  "category": "TYPE",
+  "severity": "low",
+  "confidence": "low",
+  "vectors": [
+   "SV-TYPE-9"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-014",
+  "title": "Non-finite value in decimal field",
+  "category": "TYPE",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-TYPE-15"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-017",
+  "title": "Zero/negative count field",
+  "category": "TYPE",
+  "severity": "medium",
+  "confidence": "medium",
+  "vectors": [
+   "AV-TYPE-13",
+   "SV-TYPE-4"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-020",
+  "title": "Enum value not in dictionary code-set",
+  "category": "TYPE",
+  "severity": "high",
+  "confidence": "medium",
+  "vectors": [
+   "AV-TYPE-30",
+   "AV-TYPE-33",
+   "SV-TYPE-35"
+  ]
+ },
+ {
+  "id": "SAFIX-TYPE-021",
+  "title": "Control characters in STRING field",
+  "category": "TYPE",
+  "severity": "high",
+  "confidence": "high",
+  "vectors": [
+   "AV-TYPE-29"
+  ]
+ }
+]

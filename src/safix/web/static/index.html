@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAFIX — FIX Security Scanner</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">SAFIX <span class="tag">Static Analyzer for FIX</span></div>
+    <nav class="tabs">
+      <button class="tab active" data-view="scan">Scan</button>
+      <button class="tab" data-view="live">Live</button>
+      <button class="tab" data-view="rules">Rules</button>
+    </nav>
+    <div class="ver" id="version"></div>
+  </header>
+
+  <!-- ===================== SCAN VIEW ===================== -->
+  <div class="layout view" id="view-scan">
+    <aside class="sidebar">
+      <h2>Scan input</h2>
+      <label class="fld">FIX log (paste; SOH or <code>|</code> delimited)
+        <textarea id="content" rows="10" spellcheck="false"
+          placeholder="8=FIX.4.4|9=...|35=D|...|10=123|"></textarea>
+      </label>
+      <div class="row">
+        <button id="sampleBtn" class="ghost">Load sample</button>
+        <label class="fileBtn">Upload file<input type="file" id="fileInput" hidden></label>
+      </div>
+
+      <h2>Settings</h2>
+      <label class="fld">FIX version (dictionary)
+        <select id="fixVersion"><option value="">auto-detect</option></select>
+      </label>
+      <label class="fld">Field delimiter
+        <select id="delimiter">
+          <option value="">auto-detect</option>
+          <option value="soh">SOH (0x01)</option>
+          <option value="|">| (pipe)</option>
+          <option value="^">^ (caret)</option>
+          <option value=";">; (semicolon)</option>
+        </select>
+      </label>
+      <label class="fld">Minimum severity
+        <select id="severityMin">
+          <option value="info">info</option>
+          <option value="low">low</option>
+          <option value="medium">medium</option>
+          <option value="high">high</option>
+          <option value="critical">critical</option>
+        </select>
+      </label>
+      <label class="chk"><input type="checkbox" id="dedup" checked> Collapse duplicates</label>
+
+      <details class="thresholds">
+        <summary>Thresholds</summary>
+        <div id="thresholds"></div>
+      </details>
+
+      <details class="thresholds">
+        <summary>Suppressions (JSON array)</summary>
+        <textarea id="suppressions" rows="4" spellcheck="false"
+          placeholder='[{"rule_id":"SAFIX-TYPE-016","reason":"known venue"}]'></textarea>
+      </details>
+
+      <button id="scanBtn" class="primary">Scan</button>
+      <div class="exports">
+        <span class="exlabel">Download report:</span>
+        <button data-fmt="sarif" class="ghost export">SARIF</button>
+        <button data-fmt="json" class="ghost export">JSON</button>
+        <button data-fmt="html" class="ghost export">HTML</button>
+        <button data-fmt="junit" class="ghost export">JUnit</button>
+      </div>
+      <div id="exportMsg" class="exmsg"></div>
+    </aside>
+
+    <main class="results">
+      <section class="summary" id="summary">
+        <p class="hint">Paste a FIX log (or load the sample) and press <b>Scan</b>.</p>
+      </section>
+      <section class="filters" id="filters" hidden>
+        <input type="search" id="search" placeholder="filter by rule, title, session, vector…">
+        <select id="catFilter"><option value="">all categories</option></select>
+        <select id="sevFilter">
+          <option value="">all severities</option>
+          <option value="critical">critical</option><option value="high">high</option>
+          <option value="medium">medium</option><option value="low">low</option>
+          <option value="info">info</option>
+        </select>
+        <label class="chk inline"><input type="checkbox" id="showSuppressed"> show suppressed</label>
+      </section>
+      <section id="findings" class="findings"></section>
+    </main>
+  </div>
+
+  <!-- ===================== LIVE VIEW ===================== -->
+  <div class="layout view" id="view-live" hidden>
+    <aside class="sidebar">
+      <h2>Live monitor</h2>
+      <p class="hint">Passively tail a FIX log <b>on this machine</b> and alert in real time.
+        SAFIX reads the file read-only, out-of-band — zero impact on the trading engine.</p>
+      <label class="fld">Log file path (server-side)
+        <input type="text" id="livePath" spellcheck="false"
+          placeholder="/path/to/FIX.4.4-CLIENT-SERVER.messages.log">
+      </label>
+      <label class="fld">FIX version (dictionary)
+        <select id="liveFixVersion"><option value="">auto-detect</option></select>
+      </label>
+      <label class="fld">Minimum severity
+        <select id="liveSeverity">
+          <option value="info">info</option><option value="low">low</option>
+          <option value="medium">medium</option><option value="high">high</option>
+          <option value="critical">critical</option>
+        </select>
+      </label>
+      <label class="chk"><input type="checkbox" id="liveFromStart"> Scan existing content first</label>
+      <div class="row">
+        <button id="liveStart" class="primary inline">Start</button>
+        <button id="liveStop" class="ghost" disabled>Stop</button>
+        <button id="liveClear" class="ghost">Clear</button>
+      </div>
+      <div id="liveStatus" class="exmsg"></div>
+    </aside>
+    <main class="results">
+      <section class="summary" id="liveSummary"><p class="hint">Enter a log path and press <b>Start</b>.</p></section>
+      <section class="findings" id="liveFindings"></section>
+    </main>
+  </div>
+
+  <!-- ===================== RULES VIEW ===================== -->
+  <div class="layout view" id="view-rules" hidden>
+    <main class="rules-editor">
+      <h2>Custom rules (YAML)</h2>
+      <p class="hint">Rules you write here are saved on the server and applied to every scan.
+        Leave empty and Save to clear them. See the reference on the right.</p>
+      <textarea id="customRules" rows="18" spellcheck="false"
+        placeholder="rules:&#10;  - id: SAFIX-CUSTOM-0001&#10;    title: ...&#10;    when:&#10;      - {tag: 40, equals: '1'}"></textarea>
+      <div class="row">
+        <button id="saveRules" class="primary inline">Save rules</button>
+        <button id="insertExample" class="ghost">Insert example</button>
+        <button id="reloadRules" class="ghost">Reload</button>
+      </div>
+      <div id="rulesStatus" class="exmsg"></div>
+
+      <h2>All rules — hide the ones you don't want</h2>
+      <p class="hint">Un-check a rule (or a whole detector) to disable it for your scans.
+        Saved in this browser.</p>
+      <input type="search" id="ruleSearch" placeholder="filter rules…">
+      <div id="ruleList" class="rule-list"></div>
+    </main>
+
+    <aside class="help">
+      <h2>How to write a rule</h2>
+      <p>A rule is a stateless, single-message check: a set of field conditions combined with
+        <code>match: all</code> (AND) or <code>any</code> (OR). Minimal shape:</p>
+      <pre id="helpExample" class="evidence"></pre>
+      <h3>Fields</h3>
+      <ul class="helpfields">
+        <li><code>id</code> — unique id (used to hide/suppress it)</li>
+        <li><code>title</code>, <code>message</code> — what to show</li>
+        <li><code>category</code> — SESS · TYPE · STRUCT · APP · ENC · CUSTOM</li>
+        <li><code>severity</code> — critical · high · medium · low · info</li>
+        <li><code>confidence</code> — high · medium · low</li>
+        <li><code>msg_types</code> — e.g. <code>["D","G"]</code>; omit = all</li>
+        <li><code>when</code> — list of conditions on tags</li>
+        <li><code>benign</code>, <code>remediation</code>, <code>vector_ids</code> — context</li>
+      </ul>
+      <h3>Condition operators</h3>
+      <table class="ops" id="opsTable"></table>
+    </aside>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

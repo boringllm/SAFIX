@@ -1,0 +1,51 @@
+# Built-in declarative rules: prose-only conditional-required fields (APP family D03).
+# These rules encode conditional requirements that the machine-readable dictionary cannot express,
+# so the Python STRUCT detector (which uses the dictionary) does not catch them.
+rules:
+  - id: SAFIX-APP-030
+    title: Stop order without StopPx(99)
+    message: "OrdType is Stop/Stop-Limit (40=3/4) but StopPx(99) is absent"
+    category: APP
+    severity: medium
+    confidence: high
+    vector_ids: [SV-APP-3, AV-APP-03]
+    msg_types: ["D", "G"]
+    match: all
+    when:
+      - {tag: 40, in: ["3", "4"]}
+      - {tag: 99, exists: false}
+    benign: ["A venue may default StopPx server-side, though the spec requires it."]
+    remediation: "Reject per BusinessRejectReason; StopPx is required for Stop order types."
+    references: [SV-APP-3]
+
+  - id: SAFIX-APP-031
+    title: Limit order without Price(44)
+    message: "OrdType is Limit/Stop-Limit (40=2/4) but Price(44) is absent"
+    category: APP
+    severity: medium
+    confidence: high
+    vector_ids: [SV-APP-3]
+    msg_types: ["D", "G"]
+    match: all
+    when:
+      - {tag: 40, in: ["2", "4"]}
+      - {tag: 44, exists: false}
+    benign: ["A pegged/discretionary limit may derive price server-side."]
+    remediation: "Reject per BusinessRejectReason; Price is required for Limit order types."
+    references: [SV-APP-3]
+
+  - id: SAFIX-APP-032
+    title: Market order carrying a Price(44)
+    message: "OrdType is Market (40=1) but a Price(44) is present (ignored / ambiguous)"
+    category: APP
+    severity: low
+    confidence: medium
+    vector_ids: [AV-APP-04]
+    msg_types: ["D", "G"]
+    match: all
+    when:
+      - {tag: 40, equals: "1"}
+      - {tag: 44, exists: true}
+    benign: ["Some clients always populate Price; the venue ignores it for market orders."]
+    remediation: "Advisory: a market order should not carry a limit price."
+    references: [AV-APP-04]
